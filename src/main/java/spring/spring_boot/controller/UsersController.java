@@ -29,10 +29,7 @@ public class UsersController {
     }
 
     @PostMapping()
-    public String createUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) {
-            return "users/new";
-        }
+    public String createUser(@ModelAttribute("user") User user) {
         userService.addUser(user);
         return "redirect:/";
     }
@@ -44,10 +41,7 @@ public class UsersController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PATCH)
-    public String updateUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
-        if(bindingResult.hasErrors()) {
-            return "users/edit";
-        }
+    public String updateUser(@ModelAttribute("user") User user) {
         userService.updateUser(user);
         return "redirect:/";
     }
